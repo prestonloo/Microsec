@@ -1,0 +1,29 @@
+<!doctype html>
+  <html>
+      <head>
+          <meta charset="utf-8">
+          <title>webclient_app</title>
+      </head>
+  
+      <body>
+          <h1><b>{{ title }}</b></h1>
+          <p><b>{% autoescape off %}{{ message }}{% endautoescape %}</b></p>
+
+        <script>
+            //connect to websocket at 127.0.0.1 at port 5678
+            var ws = new WebSocket("ws://127.0.0.1:5678/");
+            
+            //display data received on web browser
+            messages = document.createElement('ul');
+            ws.onmessage = function (event) {
+                var messages = document.getElementsByTagName('ul')[0],
+                message = document.createElement('li'),
+                content = document.createTextNode(event.data);
+                message.appendChild(content);
+                messages.appendChild(message);
+            };
+            document.body.appendChild(messages);
+        </script>
+
+     </body>
+ </html>

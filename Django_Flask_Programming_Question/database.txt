@@ -1,0 +1,46 @@
+#create database
+CREATE SCHEMA `microsec`;
+
+
+#create table
+CREATE TABLE `microsec`.`microsec` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `dateTime` VARCHAR(45) NULL,
+  `temperature` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+
+
+#enter test values into database at the beginning for testing
+INSERT INTO `microsec`.`microsec` (`dateTime`, `temperature`) VALUES ('07 Nov 2019 13:00:00', '30');
+
+INSERT INTO `microsec`.`microsec` (`dateTime`, `temperature`) VALUES ('07 Nov 2019 13:00:10', '32');
+
+INSERT INTO `microsec`.`microsec` (`dateTime`, `temperature`) VALUES ('07 Nov 2019 13:00:20', '34');
+
+INSERT INTO `microsec`.`microsec` (`dateTime`, `temperature`) VALUES ('07 Nov 2019 13:00:30', '36');
+
+INSERT INTO `microsec`.`microsec` (`dateTime`, `temperature`) VALUES ('07 Nov 2019 13:00:40', '38');
+
+INSERT INTO `microsec`.`microsec` (`dateTime`, `temperature`) VALUES ('07 Nov 2019 13:00:50', '40');
+
+INSERT INTO `microsec`.`microsec` (`dateTime`, `temperature`) VALUES ('07 Nov 2019 13:01:00', '42');
+
+
+#enter test values again into database at 10 second intervals for testing
+INSERT INTO `microsec`.`microsec` (`dateTime`, `temperature`) VALUES ('07 Nov 2019 13:01:10', '44');
+
+INSERT INTO `microsec`.`microsec` (`dateTime`, `temperature`) VALUES ('07 Nov 2019 13:01:20', '46');
+
+INSERT INTO `microsec`.`microsec` (`dateTime`, `temperature`) VALUES ('07 Nov 2019 13:01:30', '48');
+
+INSERT INTO `microsec`.`microsec` (`dateTime`, `temperature`) VALUES ('07 Nov 2019 13:01:40', '50');
+
+INSERT INTO `microsec`.`microsec` (`dateTime`, `temperature`) VALUES ('07 Nov 2019 13:01:50', '52');
+
+INSERT INTO `microsec`.`microsec` (`dateTime`, `temperature`) VALUES ('07 Nov 2019 13:02:00', '54');
+
+INSERT INTO `microsec`.`microsec` (`dateTime`, `temperature`) VALUES ('07 Nov 2019 13:03:10', '56');
+
+
+#retrieve latest temperature according to time
+SELECT `dateTime`,`temperature` FROM microsec.microsec where `dateTime` IN (SELECT max(`dateTime`) FROM microsec.microsec);

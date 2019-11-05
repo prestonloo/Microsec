@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>webclient_app</title>
+    </head>
+    <body>
+        <h1><b>Temperature Sensor</b></h1>
+        <b>The list of temperatures is shown below in Degree Celsius.</b>
+        <p>
+        <b>Date Time | Temperature</b>
+        <script>
+            //connect to websocket at 127.0.0.1 at port 5678	
+            var ws = new WebSocket("ws://127.0.0.1:5678/");
+
+            //display data received on web browser
+            messages = document.createElement('ul');
+            ws.onmessage = function (event) {
+                var messages = document.getElementsByTagName('ul')[0],
+                    message = document.createElement('li'),
+                    content = document.createTextNode(event.data);
+                message.appendChild(content);
+                messages.appendChild(message);
+            };
+            document.body.appendChild(messages);
+        </script>
+    </body>
+</html>
